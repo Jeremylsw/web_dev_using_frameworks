@@ -6,3 +6,8 @@ A template with React and Babel configured
 
 - Jest: https://jestjs.io/docs/tutorial-react#dom-testing
 - React Testing Library: https://testing-library.com/docs/react-testing-library/intro/
+
+## Usage 
+ - npm install
+ - npm start
+ - Open with live server
