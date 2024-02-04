@@ -1,0 +1,54 @@
+{
+  "tests": [
+    {
+      "name": "Entity.js",
+      "setup": "npm install",
+      "run": "npm test -- Entity.test.js",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "EntitiesList.js",
+      "setup": "npm install",
+      "run": "npm test -- EntitiesList.test.js",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "AddEntityForm.js",
+      "setup": "npm install",
+      "run": "npm test -- AddEntityForm.test.js",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "FilterEntitiesForm.js",
+      "setup": "npm install",
+      "run": "npm test -- FilterEntitiesForm.test.js",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "App.js",
+      "setup": "npm install",
+      "run": "npm test -- App.test.js",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    }
+  ]
+}
