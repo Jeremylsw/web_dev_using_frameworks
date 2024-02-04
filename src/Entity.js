@@ -1,10 +1,10 @@
-import { EntityCategoryTestId, EntitySelectTestId } from './testId.js';
+import { EntitySelectTestId } from './testId.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearFilter, deleteEntity, selectEntity, togglePinEntity } from './entityReducer.js';
 import { Link } from 'react-router-dom';
 
 export default function Entity({ entity }) {
-    const { id, title, description, price, country, travelPeriod, imageURL, pinned } = entity;
+    const { id, category, title, description, price, country, travelPeriod, imageURL, pinned } = entity;
 
     const entityList = useSelector(function (store) {
         return store.entity.entityList;
@@ -30,6 +30,8 @@ export default function Entity({ entity }) {
             {/* Displaying the category of the entity */}
             <div style={{ marginLeft: '30px' }}>
                 <span>{'ID: ' + id}</span>
+                <br />
+                <span>{'Category: ' + category}</span>
                 <br />
                 <span>{'Title: ' + title}</span>
                 <br />
