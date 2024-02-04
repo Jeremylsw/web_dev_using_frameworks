@@ -1,25 +1,66 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { generateRandomId } from './helper.js';
-import { countEntitiesWithYesPinned } from './helper.js';
+import { countEntitiesWithYesPinned, generateCurrentTime } from './helper.js';
 
 const entitySlice = createSlice({
     name: 'Entity Slice',
     initialState: {
         entityList: [
-            { id: generateRandomId(10), category: 'cat1', pinned: 'No' },
-            { id: generateRandomId(10), category: 'cat2', pinned: 'No' },
-            { id: generateRandomId(10), category: 'cat3', pinned: 'No' },
+            { id: generateRandomId(10), category: 'Japan', title: '3D4N Japan Excursion', pinned: 'No', description: 'test1', price: '3000', country: 'test1', travelPeriod: 'test1', ImageURL: 'test1', DateInserted: generateCurrentTime() },
+            { id: generateRandomId(10), category: 'Taiwan', title: '8D3N Taiwan Trial', pinned: 'No', description: 'test1', price: '3000', country: 'test1', travelPeriod: 'test1', ImageURL: 'test1', DateInserted: generateCurrentTime() },
+            { id: generateRandomId(10), category: 'Japan', title: '10D8N Japan Marathon', pinned: 'No', description: 'test1', price: '3000', country: 'test1', travelPeriod: 'test1', ImageURL: 'test1', DateInserted: generateCurrentTime() },
         ],
         filterCategories: [],
         selectedEntities: [],
         inputCategory: '',
+        inputTitle: '',  // Add inputTitle field
+        inputDescription: '',  // Add inputDescription field
+        inputPrice: '',  // Add inputPrice field
+        inputCountry: '',  // Add inputCountry field
+        inputTravelPeriod: '',  // Add inputTravelPeriod field
+        inputImageURL: '',  // Add inputImageURL field
         updateCategory: '',
     },
     reducers: {
         addEntity: function (state, action) {
             // action.payload will be the category
-            state.entityList.push({ id: generateRandomId(10), category: action.payload, pinned: 'No' });
+            state.entityList.push({
+                id: generateRandomId(10),
+                category: action.payload.category,
+                title: action.payload.title,
+                description: action.payload.description,
+                price: action.payload.price,
+                country: action.payload.country,
+                travelPeriod: action.payload.travelPeriod,
+                imageURL: action.payload.imageURL,
+                DateInserted: generateCurrentTime(),
+                pinned: 'No',
+            });
         },
+        inputTitle: function (state, action) {
+            state.inputTitle = action.payload;
+        },
+
+        inputDescription: function (state, action) {
+            state.inputDescription = action.payload;
+        },
+
+        inputPrice: function (state, action) {
+            state.inputPrice = action.payload;
+        },
+
+        inputCountry: function (state, action) {
+            state.inputCountry = action.payload;
+        },
+
+        inputTravelPeriod: function (state, action) {
+            state.inputTravelPeriod = action.payload;
+        },
+
+        inputImageURL: function (state, action) {
+            state.inputImageURL = action.payload;
+        },
+
         filterEntity: function (state, action) {
             // action.payload will be the category
             let category = action.payload;
@@ -97,6 +138,12 @@ const entitySlice = createSlice({
 // Dispatch these to update the state in your component
 export const {
     addEntity,
+    inputTitle,
+    inputDescription,
+    inputPrice,
+    inputCountry,
+    inputTravelPeriod,
+    inputImageURL,
     filterEntity,
     clearFilter,
     deleteEntity,

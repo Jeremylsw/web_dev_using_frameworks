@@ -4,7 +4,7 @@ import { clearFilter, deleteEntity, selectEntity, togglePinEntity } from './enti
 import { Link } from 'react-router-dom';
 
 export default function Entity({ entity }) {
-    const { id, category } = entity;
+    const { id, title, description, price, country, travelPeriod, imageURL, pinned } = entity;
 
     const entityList = useSelector(function (store) {
         return store.entity.entityList;
@@ -31,8 +31,17 @@ export default function Entity({ entity }) {
             <div style={{ marginLeft: '30px' }}>
                 <span>{'ID: ' + id}</span>
                 <br />
-                <span>{'Category: '}</span>
-                <span data-testid={EntityCategoryTestId}>{category}</span>
+                <span>{'Title: ' + title}</span>
+                <br />
+                <span>{'Description: ' + description}</span>
+                <br />
+                <span>{'Price: ' + price}</span>
+                <br />
+                <span>{'Country: ' + country}</span>
+                <br />
+                <span>{'Travel Period: ' + travelPeriod}</span>
+                <br />
+                <span>{'Image URL: ' + imageURL}</span>
             </div>
             <br />
             {/* Button for jumping to entity info page */}

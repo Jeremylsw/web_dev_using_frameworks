@@ -1,38 +1,123 @@
-import { addEntity, inputCategory } from './entityReducer.js';
+import {
+    addEntity,
+    inputCategory,
+    inputTitle,
+    inputDescription,
+    inputPrice,
+    inputCountry,
+    inputTravelPeriod,
+    inputImageURL,
+} from './entityReducer.js';
 import { useDispatch, useSelector } from 'react-redux';
-import { AddEntityCategoryTestId, AddEntitySubmitTestId } from './testId.js';
+import { AddEntitySubmitTestId } from './testId.js';
 
 export default function AddEntityForm() {
-    const category = useSelector(function (store) {
-        return store.entity.inputCategory;
-    });
+    const formData = {
+        category: useSelector((store) => store.entity.inputCategory),
+        title: useSelector((store) => store.entity.inputTitle),
+        description: useSelector((store) => store.entity.inputDescription),
+        price: useSelector((store) => store.entity.inputPrice),
+        country: useSelector((store) => store.entity.inputCountry),
+        travelPeriod: useSelector((store) => store.entity.inputTravelPeriod),
+        imageURL: useSelector((store) => store.entity.inputImageURL),
+    };
 
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Check if the category is not empty before submitting
-        if (category.trim() === '') {
-            // Handle the case where the category is empty
-            alert('Category cannot be empty!');
-            return;
+
+        // Check if any of the required fields are empty before submitting
+        for (const field in formData) {
+            if (formData[field].trim() === '') {
+                alert(`${field} cannot be empty!`);
+                return;
+            }
         }
-        dispatch(addEntity(category));
+
+        // Dispatch actions to update the state in your Redux store
+        dispatch(addEntity(formData));
+
+        // Optionally, reset the input fields after submission
         dispatch(inputCategory(''));
+        dispatch(inputTitle(''));
+        dispatch(inputDescription(''));
+        dispatch(inputPrice(''));
+        dispatch(inputCountry(''));
+        dispatch(inputTravelPeriod(''));
+        dispatch(inputImageURL(''));
     };
 
+
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Category {/* Input for typing the category */}
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', width: '300px' }}>
+            <label style={{ display: 'flex', flexDirection: 'column', marginBottom: '8px' }}>
+                <span>Category</span>
                 <input
                     type="text"
-                    data-testid={AddEntityCategoryTestId}
-                    value={category}
-                    onChange={(e) => {
-                        dispatch(inputCategory(e.target.value));
-                        // console.log(category);
-                    }}
+                    value={formData.category}
+                    onChange={(e) => dispatch(inputCategory(e.target.value))}
+                    style={{ paddingLeft: '8px'}}
+                />
+            </label>
+
+            <label style={{ display: 'flex', flexDirection: 'column', marginBottom: '8px' }}>
+                <span>Title</span>
+                <input
+                    type="text"
+                    value={formData.title}
+                    onChange={(e) => dispatch(inputTitle(e.target.value))}
+                    style={{ paddingLeft: '8px'}}
+                />
+            </label>
+
+            <label style={{ display: 'flex', flexDirection: 'column', marginBottom: '8px' }}>
+                <span >Description</span>
+                <input
+                    type="text"
+                    value={formData.description}
+                    onChange={(e) => dispatch(inputDescription(e.target.value))}
+                    style={{ paddingLeft: '8px'}}
+                />
+            </label>
+
+            <label style={{ display: 'flex', flexDirection: 'column', marginBottom: '8px' }}>
+                <span >Price</span>
+                <input
+                    type="text"
+                    value={formData.price}
+                    onChange={(e) => dispatch(inputPrice(e.target.value))}
+                    style={{ paddingLeft: '8px'}}
+                />
+            </label>
+
+            <label style={{ display: 'flex', flexDirection: 'column', marginBottom: '8px' }}>
+                <span >Country</span>
+                <input
+                    type="text"
+                    value={formData.country}
+                    onChange={(e) => dispatch(inputCountry(e.target.value))}
+                    style={{ paddingLeft: '8px'}}
+                />
+            </label>
+
+            <label style={{ display: 'flex', flexDirection: 'column', marginBottom: '8px' }}>
+                <span >Travel Period</span>
+                <input
+                    type="text"
+                    value={formData.travelPeriod}
+                    onChange={(e) => dispatch(inputTravelPeriod(e.target.value))}
+                    style={{ paddingLeft: '8px'}}
+                />
+            </label>
+
+            <label style={{ display: 'flex', flexDirection: 'column'}}>
+                <span >Image URL</span>
+                <input
+                    type="text"
+                    value={formData.imageURL}
+                    onChange={(e) => dispatch(inputImageURL(e.target.value))}
+                    style={{ paddingLeft: '8px'}}
                 />
             </label>
 
